@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性：设置为接口的全类名-->
+<mapper namespace="com.atguigu.springboot.mapper.SysRoleMapper">
+
+    <resultMap id="RoleMap" type="com.atguigu.springboot.model.system.SysRole" autoMapping="true"/>
+    <!--      IPage<SysRole> selectPage(Page<SysRole> page, @Param("vo") SysRoleQueryVo roleQueryVo);-->
+    <select id="selectPage" resultMap="RoleMap">
+        select id,role_name,role_code,description,create_time,update_time,is_deleted
+        from sys_role
+        <where>
+            and is_deleted = 0
+            <if test="vo.roleName != null and vo.roleName != ''">
+                and role_name like concat('%',#{vo.roleName},'%')
+            </if>
+        </where>
+        order by id asc
+    </select>
+</mapper>

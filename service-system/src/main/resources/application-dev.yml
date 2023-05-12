@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guigu-auth
+    username: root
+    password: 190325
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #  redis:
+  #    cluster:
+  #      nodes:
+  #        - 101.43.162.188:7291
+  #        - 101.43.162.188:7292
+  #        - 101.43.162.188:7293
+  #        - 101.43.162.188:7294
+  #        - 101.43.162.188:7295
+  #        - 101.43.162.188:7296
+
+
+  redis:
+    host: 101.43.162.188
+    port: 6379
+    database: 0
+    timeout: 1800000
+    jedis:
+      pool:
+        max-active: 20 #最大连接数
+        max-wait: -1    #最大阻塞等待时间(负数表示没限制)
+        max-idle: 5    #最大空闲
+        min-idle: 0     #最小空闲
+
+
+
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
+      #global-config:
+      #db-config:
+      #logic-delete-value: 2
+      #logic-not-delete-value: 0
+      #逻辑删除的字段 配置了不用添加 @TableLogic @TableField("is_deleted") 注解
+    #logic-delete-field: isDeleted
+logging:
+  level:
+    com.atguigu.springboot: debug
+  #springboot打印日志信息默认是info及以上
